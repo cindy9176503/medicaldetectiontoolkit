@@ -16,6 +16,11 @@ pip3 install -e .
 
 pip install torch==0.4.1 -f https://download.pytorch.org/whl/torch_stable.html
 
+sudo apt-get install libsm6 libxrender1 libfontconfig1
+pip install tqdm
+pip install SimpleITK
+pip install pynrrd
+
 ----------------------------------------------------------------------------------------------------
 
 V100 sm_70
