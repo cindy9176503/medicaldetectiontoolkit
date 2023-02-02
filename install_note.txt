@@ -1,0 +1,36 @@
+Setup package in a virtual environment:
+
+git clone https://github.com/pfjaeger/medicaldetectiontoolkit.git .
+
+cd medicaldetectiontoolkit
+
+virtualenv -p python3.6 venv
+-> conda create --name maskrcnn3d python=3.6
+
+source venv/bin/activate
+-> conda env list
+-> conda activate maskrcnn3d 
+
+pip3 install -e .
+-> pip install -e .
+
+pip install torch==0.4.1 -f https://download.pytorch.org/whl/torch_stable.html
+
+----------------------------------------------------------------------------------------------------
+
+V100 sm_70
+
+cd cuda_functions/nms_3D/src/cuda/
+nvcc -c -o nms_kernel.cu.o nms_kernel.cu -x cu -Xcompiler -fPIC -arch=sm_70
+cd ../../
+python build.py
+cd ../../
+
+cd cuda_functions/roi_align_3D/roi_align/src/cuda/
+nvcc -c -o crop_and_resize_kernel.cu.o crop_and_resize_kernel.cu -x cu -Xcompiler -fPIC -arch=sm_70
+cd ../../
+python build.py
+cd ../../../
+
+----------------------------------------------------------------------------------------------------
+
